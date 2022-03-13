@@ -22,8 +22,10 @@
     indentline = { url = "github:Yggdroot/indentLine"; flake = false; };
     indent-blankline = { url = "github:lukas-reineke/indent-blankline.nvim"; flake = false; };
     statusline-lightline = { url = "github:itchyny/lightline.vim"; flake = false; };
+    statusline-lightline-onedark = { url = "github:NovaDev94/lightline-onedark"; flake = false; };
     theme-gruvbox = { url = "github:morhetz/gruvbox"; flake = false; };
     theme-nord = { url = "github:arcticicestudio/nord-vim"; flake = false; };
+    theme-onedark = { url = "github:olimorris/onedarkpro.nvim"; flake = false; };
     tree = { url = "github:kyazdani42/nvim-tree.lua"; flake = false; };
 
     # Git
@@ -59,8 +61,10 @@
     plugins = [
       "theme-gruvbox"
       "theme-nord"
+      "theme-onedark"
       "startify"
       "statusline-lightline"
+      "statusline-lightline-onedark"
       "lspconfig"
       "completion"
       "lang-nix"
@@ -118,10 +122,10 @@
           vim.viAlias = true;
           vim.vimAlias = true;
           vim.dashboard.startify.enable = true;
-          vim.dashboard.startify.customHeader = [ "NIXOS NEOVIM CONFIG" ];
-          vim.theme.nord.enable = true;
+          vim.theme.onedark.enable = true;
           vim.disableArrows = true;
           vim.statusline.lightline.enable = true;
+          vim.statusline.lightline.theme = "onedark";
           vim.lsp.enable = true;
           vim.lsp.bash = true;
           vim.lsp.go = true;

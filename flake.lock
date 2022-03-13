@@ -435,10 +435,12 @@
         "rnix-lsp": "rnix-lsp",
         "startify": "startify",
         "statusline-lightline": "statusline-lightline",
+        "statusline-lightline-onedark": "statusline-lightline-onedark",
         "telescope": "telescope",
         "test": "test",
         "theme-gruvbox": "theme-gruvbox",
         "theme-nord": "theme-nord",
+        "theme-onedark": "theme-onedark",
         "tree": "tree",
         "treesitter": "treesitter",
         "treesitter-context": "treesitter-context",
@@ -476,6 +478,22 @@
       "original": {
         "owner": "itchyny",
         "repo": "lightline.vim",
+        "type": "github"
+      }
+    },
+    "statusline-lightline-onedark": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1582496289,
+        "narHash": "sha256-HuIUA8ngQvMwgXUfv7KqR4EsuOpuwHGW894vKs5R9ik=",
+        "owner": "NovaDev94",
+        "repo": "lightline-onedark",
+        "rev": "34d93c53493b7b70da86a142c9907223f054bf1c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NovaDev94",
+        "repo": "lightline-onedark",
         "type": "github"
       }
     },
@@ -540,6 +558,22 @@
       "original": {
         "owner": "arcticicestudio",
         "repo": "nord-vim",
+        "type": "github"
+      }
+    },
+    "theme-onedark": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1646651338,
+        "narHash": "sha256-QcC8SRaCYDRt2r0iBFE13e6Z7A8ToK3F7uzi2tqoQbg=",
+        "owner": "olimorris",
+        "repo": "onedarkpro.nvim",
+        "rev": "f0562da89fecbce7ef335875c70baedfdd34c7d8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "olimorris",
+        "repo": "onedarkpro.nvim",
         "type": "github"
       }
     },

@@ -8,50 +8,46 @@ let
   cfg = config.vim.theme.onedark;
   lightlineCfg = config.vim.statusline.lightline;
 
+  mkStyleOption = default: mkOption {
+    inherit default;
+    type = with types; listOf (enum [ "NONE" "bold" "italic" ]);
+  };
+
 in
 
 {
   options.vim.theme.onedark = {
     enable = mkEnableOption "Enable one dark theme";
+
+    styles = {
+      comments = mkStyleOption [ "italic" ];
+      keywords = mkStyleOption [ "bold" "italic" ];
+      functions = mkStyleOption [ "NONE" ];
+      strings = mkStyleOption [ "NONE" ];
+      variables = mkStyleOption [ "NONE" ];
+    };
+
+    options = {
+      bold = mkEnableOption "Use the themes opinionated bold styles" // { default = true; };
+      italic = mkEnableOption "Use the themes opinionated italic styles" // { default = true; };
+      underline = mkEnableOption "Use the themes opinionated underline styles" // { default = true; };
+      undercurl = mkEnableOption "Use the themes opinionated undercurl styles" // { default = true; };
+      cursorline = mkEnableOption "Use cursorline highlighting" // { default = true; };
+      transparency = mkEnableOption "Use a transparent background";
+      terminal_colors = mkEnableOption "Use the theme's colors for Neovim's :terminal" // { default = true; };
+      window_unfocussed_color = mkEnableOption "When the window is out of focus, change the normal background" // { default = true; };
+    };
   };
 
   config = mkIf cfg.enable {
     vim.luaConfigRC = ''
       local onedarkpro = require("onedarkpro")
       onedarkpro.setup({
-        -- Theme can be overwritten with 'onedark' or 'onelight' as a string
-        theme = function()
-          if vim.o.background == "dark" then
-            return "onedark"
-          else
-            return "onelight"
-          end
-        end,
-        colors = {}, -- Override default colors by specifying colors for 'onelight' or 'onedark' themes
-        hlgroups = {}, -- Override default highlight groups
-        filetype_hlgroups = {}, -- Override default highlight groups for specific filetypes
-        plugins = { -- Override which plugins highlight groups are loaded
-            native_lsp = true,
-            polygot = true,
-            treesitter = true,
-            -- NOTE: Other plugins have been omitted for brevity
-        },
         styles = {
-            strings = "NONE", -- Style that is applied to strings
-            comments = "NONE", -- Style that is applied to comments
-            keywords = "NONE", -- Style that is applied to keywords
-            functions = "NONE", -- Style that is applied to functions
-            variables = "NONE", -- Style that is applied to variables
+            ${concatStringsSep "\n" (mapAttrsToList (name: value: "${name} = \"${concatStringsSep "," value}\",") cfg.styles)}
         },
         options = {
-            bold = false, -- Use the themes opinionated bold styles?
-            italic = false, -- Use the themes opinionated italic styles?
-            underline = false, -- Use the themes opinionated underline styles?
-            undercurl = false, -- Use the themes opinionated undercurl styles?
-            cursorline = false, -- Use cursorline highlighting?
-            transparency = false, -- Use a transparent background?
-            terminal_colors = false, -- Use the theme's colors for Neovim's :terminal?
-            window_unfocussed_color = false, -- When the window is out of focus, change the normal background?
+            ${concatStringsSep "\n" (mapAttrsToList (name: value: "${name} = ${boolToString value},") cfg.options)}
         }
       })
       onedarkpro.load()
