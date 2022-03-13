@@ -1,11 +1,17 @@
 { pkgs, config, lib, ...}:
+
 with lib;
 with builtins;
 
 let
-  cfg = config.vim.theme.nord;
-in {
 
+  cfg = config.vim.theme.nord;
+
+  mkVimBool = val: if val then "1" else "0";
+
+in
+
+{
   options.vim.theme.nord = {
     enable = mkEnableOption "Enable nord theme";
 
@@ -33,7 +39,6 @@ in {
       type = types.bool;
     };
 
-
     bold = mkOption {
       default = true;
       description = "Enable bold text";
@@ -57,18 +62,14 @@ in {
       description = "Enable italics for comments";
       type = types.bool;
     };
-
   };
 
-  config = mkIf (cfg.enable) 
-  (let
-    mkVimBool = val: if val then "1" else "0";
-  in {
+  config = mkIf cfg.enable {
     vim.configRC = ''
       colorscheme nord
     '';
 
-    vim.startPlugins = with pkgs.neovimPlugins; [nord-vim];
+    vim.startPlugins = with pkgs.neovimPlugins; [theme-nord];
 
     vim.globals = {
       "nord_cursor_line_number_background" = mkVimBool cfg.lineNumberBackgroundColoured;
@@ -79,6 +80,5 @@ in {
       "nord_italic_comments" = mkVimBool cfg.italicComments;
       "nord_underline" = mkVimBool cfg.underline;
     };
-  });
-
+  };
 }

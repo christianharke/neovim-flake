@@ -3,19 +3,21 @@ with lib;
 with builtins;
 
 let
+
   cfg = config.vim.fuzzyfind.telescope;
-in {
+
+in
+
+{
   options.vim.fuzzyfind.telescope = {
     enable = mkEnableOption "Enable telescope";
-
-
   };
 
   config = mkIf cfg.enable {
     vim.startPlugins = with pkgs.neovimPlugins; [
-      nvim-telescope
-      popup-nvim
-      plenary-nvim
+      plenary
+      popup
+      telescope
     ];
 
     vim.luaConfigRC = ''
@@ -41,7 +43,5 @@ in {
       "<leader>bl" = "<cmd>Telescope buffers<cr>";
       "<leader>bc" = "<cmd>bdelete<cr>";
     };
-
-
   };
 }

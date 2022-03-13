@@ -1,10 +1,15 @@
 { pkgs, config, lib, ...}:
+
 with lib;
 with builtins;
 
 let
+
   cfg = config.vim.git;
-in {
+
+in
+
+{
   options.vim.git = {
     enable =  mkEnableOption "Enable git support"; 
     blameLine = mkOption {
@@ -23,9 +28,8 @@ in {
     vim.startPlugins = with pkgs.neovimPlugins; [ 
       vimagit 
       fugitive
-
-      (if cfg.blameLine then nvim-blame-line else null)
-    ];
+    ]
+    ++ optional cfg.blameLine blame-line;
     
     vim.luaConfigRC = ''
       local wk = require("which-key")
@@ -38,11 +42,8 @@ in {
       }, { prefix = "<leader>" })
     '';
 
-
-    vim.configRC = ''
-      ${if cfg.blameLine then ''
-        autocmd BufEnter * EnableBlameLine
-      '' else ""}
+    vim.configRC = optionalString cfg.blameLine ''
+      autocmd BufEnter * EnableBlameLine
     '';
   };
 }

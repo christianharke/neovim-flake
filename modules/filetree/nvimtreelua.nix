@@ -1,10 +1,15 @@
 { pkgs, config, lib, ...}:
+
 with lib;
 with builtins;
 
 let
+
   cfg = config.vim.filetree.nvimTreeLua;
-in {
+
+in
+  
+{
   options.vim.filetree.nvimTreeLua = {
     enable = mkEnableOption "Enable nvim-tree-lua";
 
@@ -109,10 +114,8 @@ in {
     let
       mkVimBool =  val: if val then 1 else 0;
     in {
-    vim.startPlugins = with pkgs.neovimPlugins; [
-      nvim-tree-lua
-      (if cfg.devIcons then nvim-web-devicons else null)
-    ];
+    vim.startPlugins = with pkgs.neovimPlugins; [ tree ]
+      ++ optional cfg.devIcons devicons;
 
     vim.nnoremap = {
       "<leader>fn" = "<cmd>NvimTreeToggle<cr>";

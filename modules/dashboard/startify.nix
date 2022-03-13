@@ -175,7 +175,7 @@ in {
   };
 
   config = mkIf (cfg.enable) {
-    vim.startPlugins = with pkgs.neovimPlugins; [vim-startify];
+    vim.startPlugins = with pkgs.neovimPlugins; [startify];
     
     vim.globals = {
       "startify_custom_header" = if cfg.customHeader == [] then null else cfg.customHeader;
@@ -205,7 +205,5 @@ in {
       "startify_session_savecmds" = cfg.sessionSavecmds;
       "startify_session_sort" = mkVimBool cfg.sessionSort;
     };
-
-
   };
 }

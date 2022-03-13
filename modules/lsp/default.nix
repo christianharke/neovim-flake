@@ -1,4 +1,5 @@
 { pkgs, config, lib, ...}:
+
 with lib;
 with builtins;
 
@@ -31,22 +32,20 @@ in {
 
     lightbulb = mkEnableOption "Enable Light Bulb";
     variableDebugPreviews = mkEnableOption "Enable variable previews";
-
   };
 
   config = mkIf cfg.enable {
     vim.startPlugins = with pkgs.neovimPlugins; [ 
-      nvim-lspconfig 
-      completion-nvim 
-      nvim-dap
-      (if cfg.nix then vim-nix else null)
-      telescope-dap
-      (if cfg.lightbulb then nvim-lightbulb else null)
-      (if cfg.variableDebugPreviews then nvim-dap-virtual-text else null)
-      nvim-treesitter
-      nvim-treesitter-context
-
-    ];
+      completion
+      dap
+      lspconfig
+      dap-telescope
+      treesitter
+      treesitter-context
+    ]
+    ++ optional cfg.nix lang-nix
+    ++ optional cfg.lightbulb lightbulb
+    ++ optional cfg.variableDebugPreviews dap-virtual-text;
 
     vim.configRC = ''
       " Use <Tab> and <S-Tab> to navigate through popup menu
@@ -93,9 +92,6 @@ in {
       #"<leader>B" = "<cmd>Telescope dap list_breakpoints<cr>";
       #"<leader>dv" = "<cmd>Telescope dap variables<cr>";
       #"<leader>df" = "<cmd>Telescope dap frames<cr>";
-    };
-
-    vim.globals = {
     };
 
     vim.luaConfigRC = ''
@@ -157,7 +153,7 @@ in {
       vim.cmd [[set foldlevel=10]]
       vim.cmd [[set foldexpr=nvim_treesitter#foldexpr()]]
 
-      ${if cfg.lightbulb then ''
+      ${optionalString cfg.lightbulb ''
         require'nvim-lightbulb'.update_lightbulb {
           sign = {
             enabled = true,
@@ -180,16 +176,16 @@ in {
           }
         }
 
-      '' else ""}
+      ''}
 
-      ${if cfg.bash then ''
+      ${optionalString cfg.bash ''
         lspconfig.bashls.setup{
           on_attach=require'completion'.on_attach;
           cmd = {"${pkgs.nodePackages.bash-language-server}/bin/bash-language-server", "start"}
         }
-      '' else ""}
+      ''}
 
-      ${if cfg.go then ''
+      ${optionalString cfg.go ''
         lspconfig.gopls.setup{
           on_attach=require'completion'.on_attach;
           cmd = {"${pkgs.gopls}/bin/gopls"}
@@ -238,121 +234,117 @@ in {
             program = "${"$"}{workspaceFolder}"
           },
        }
+      ''}
 
-
-      '' else ""}
-
-      ${if cfg.nix then ''
+      ${optionalString cfg.nix ''
         lspconfig.rnix.setup{
           on_attach=require'completion'.on_attach;
           cmd = {"${pkgs.rnix-lsp}/bin/rnix-lsp"}
         }
-      '' else ""}
+      ''}
 
-      ${if cfg.ruby then ''
+      ${optionalString cfg.ruby ''
         lspconfig.solargraph.setup{
           on_attach=require'completion'.on_attach;
           cmd = {'${pkgs.solargraph}/bin/solargraph', 'stdio'}
         }
-      '' else ""}
+      ''}
 
-      ${if cfg.rust then ''
+      ${optionalString cfg.rust ''
         lspconfig.rust_analyzer.setup{
           on_attach=require'completion'.on_attach;
           cmd = {'${pkgs.rust-analyzer}/bin/rust-analyzer'}
         }
-      '' else ""}
+      ''}
 
-      ${if cfg.terraform then ''
+      ${optionalString cfg.terraform ''
         lspconfig.terraformls.setup{
           on_attach=require'completion'.on_attach;
           cmd = {'${pkgs.terraform-ls}/bin/terraform-ls', 'serve' }
         }
-      '' else ""}
+      ''}
 
-      ${if cfg.typescript then ''
+      ${optionalString cfg.typescript ''
         lspconfig.tsserver.setup{
           on_attach=require'completion'.on_attach;
           cmd = {'${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server', '--stdio' }
         }
-      '' else ""}
+      ''}
 
-      ${if cfg.vimscript then ''
+      ${optionalString cfg.vimscript ''
         lspconfig.vimls.setup{
           on_attach=require'completion'.on_attach;
           cmd = {'${pkgs.nodePackages.vim-language-server}/bin/vim-language-server', '--stdio' }
         }
-      '' else ""}
+      ''}
 
-      ${if cfg.yaml then ''
+      ${optionalString cfg.yaml ''
         lspconfig.vimls.setup{
           on_attach=require'completion'.on_attach;
           cmd = {'${pkgs.nodePackages.yaml-language-server}/bin/yaml-language-server', '--stdio' }
         }
-      '' else ""}
+      ''}
 
-      ${if cfg.docker then ''
+      ${optionalString cfg.docker ''
         lspconfig.dockerls.setup{
           on_attach=require'completion'.on_attach;
           cmd = {'${pkgs.nodePackages.dockerfile-language-server-nodejs}/bin/docker-language-server', '--stdio' }
         }
-      '' else ""}
+      ''}
 
-      ${if cfg.css then ''
+      ${optionalString cfg.css ''
         lspconfig.cssls.setup{
           on_attach=require'completion'.on_attach;
           cmd = {'${pkgs.nodePackages.vscode-css-languageserver-bin}/bin/css-languageserver', '--stdio' };
           filetypes = { "css", "scss", "less" }; 
         }
-      '' else ""}
+      ''}
 
-      ${if cfg.html then ''
+      ${optionalString cfg.html ''
         lspconfig.html.setup{
           on_attach=require'completion'.on_attach;
           cmd = {'${pkgs.nodePackages.vscode-html-languageserver-bin}/bin/html-languageserver', '--stdio' };
           filetypes = { "html", "css", "javascript" }; 
         }
-      '' else ""}
+      ''}
 
-      ${if cfg.json then ''
+      ${optionalString cfg.json ''
         lspconfig.jsonls.setup{
           on_attach=require'completion'.on_attach;
           cmd = {'${pkgs.nodePackages.vscode-json-languageserver-bin}/bin/json-languageserver', '--stdio' };
           filetypes = { "html", "css", "javascript" }; 
         }
-      '' else ""}
+      ''}
 
-      ${if cfg.tex then ''
+      ${optionalString cfg.tex ''
         lspconfig.texlab.setup{
           on_attach=require'completion'.on_attach;
           cmd = {'${pkgs.texlab}/bin/texlab'}
         }
-      '' else ""}
+      ''}
 
-      ${if cfg.clang then ''
+      ${optionalString cfg.clang ''
         lspconfig.clangd.setup{
           on_attach=require'completion'.on_attach;
           cmd = {'${pkgs.clang-tools}/bin/clangd', '--background-index'};
           filetypes = { "c", "cpp", "objc", "objcpp" };
         }
-      '' else ""}
+      ''}
 
-      ${if cfg.cmake then ''
+      ${optionalString cfg.cmake ''
         lspconfig.cmake.setup{
-          on_attach=require'completion'.on_attach;
+          on-attach=require'completion'.on_attach;
           cmd = {'${pkgs.cmake-language-server}/bin/cmake-language-server'};
           filetypes = { "cmake"};
         }
-      '' else ""}
+      ''}
 
-      ${if cfg.python then ''
+      ${optionalString cfg.python ''
         lspconfig.pyright.setup{
           on_attach=require'completion'.on_attach;
           cmd = {"${pkgs.nodePackages.pyright}/bin/pyright-langserver", "--stdio"}
         }
-
-      '' else ""}
-
+      ''}
     '';
   };
 }

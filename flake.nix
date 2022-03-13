@@ -1,5 +1,5 @@
 {
-  description = "Wil Taylor's NeoVim config";
+  description = "Christian Harke's NeoVim config";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
@@ -12,66 +12,78 @@
 
     rnix-lsp = { url = "github:nix-community/rnix-lsp"; };
 
+    ###
     # Vim plugins
-    gruvbox = { url = "github:morhetz/gruvbox"; flake = false; };
-    nord-vim = { url = "github:arcticicestudio/nord-vim"; flake = false; };
-    vim-startify = { url = "github:mhinz/vim-startify"; flake = false; };
-    lightline-vim = { url = "github:itchyny/lightline.vim"; flake = false; };
-    nvim-lspconfig = { url = "github:neovim/nvim-lspconfig"; flake = false; };
-    completion-nvim = { url = "github:nvim-lua/completion-nvim"; flake = false; };
-    vim-nix = { url = "github:LnL7/vim-nix"; flake = false; };
-    nvim-dap = { url = "github:mfussenegger/nvim-dap"; flake = false; };
-    nvim-telescope = { url = "github:nvim-telescope/telescope.nvim"; flake = false; };
-    telescope-dap = { url = "github:nvim-telescope/telescope-dap.nvim"; flake = false; };
-    popup-nvim = { url = "github:nvim-lua/popup.nvim"; flake = false; };
-    plenary-nvim = { url = "github:nvim-lua/plenary.nvim"; flake = false; };
-    nvim-web-devicons = { url = "github:kyazdani42/nvim-web-devicons"; flake = false; };
-    nvim-tree-lua = { url = "github:kyazdani42/nvim-tree.lua"; flake = false; };
+    ###
+
+    # Appearance
+    cursorword = { url = "github:itchyny/vim-cursorword"; flake = false; };
+    devicons = { url = "github:kyazdani42/nvim-web-devicons"; flake = false; };
+    indentline = { url = "github:Yggdroot/indentLine"; flake = false; };
+    indent-blankline = { url = "github:lukas-reineke/indent-blankline.nvim"; flake = false; };
+    statusline-lightline = { url = "github:itchyny/lightline.vim"; flake = false; };
+    theme-gruvbox = { url = "github:morhetz/gruvbox"; flake = false; };
+    theme-nord = { url = "github:arcticicestudio/nord-vim"; flake = false; };
+    tree = { url = "github:kyazdani42/nvim-tree.lua"; flake = false; };
+
+    # Git
     vimagit = { url = "github:jreybert/vimagit"; flake = false; };
     fugitive = { url = "github:tpope/vim-fugitive"; flake = false; };
-    nvim-lightbulb = { url = "github:kosayoda/nvim-lightbulb"; flake = false; };
-    nvim-treesitter = { url = "github:nvim-treesitter/nvim-treesitter"; flake = false;};
-    nvim-treesitter-context = { url = "github:romgrk/nvim-treesitter-context"; flake = false;};
-    editorconfig-vim = { url = "github:editorconfig/editorconfig-vim"; flake = false; };
-    indentline = { url = "github:Yggdroot/indentLine"; flake = false; };
-    indent-blankline-nvim = { url = "github:lukas-reineke/indent-blankline.nvim"; flake = false; };
-    nvim-blame-line = { url = "github:tveskag/nvim-blame-line"; flake = false; };
-    nvim-dap-virtual-text = { url = "github:theHamsta/nvim-dap-virtual-text"; flake = false; };
-    vim-cursorword = { url = "github:itchyny/vim-cursorword"; flake = false; };
-    vim-test = { url = "github:vim-test/vim-test"; flake = false; };
-    nvim-which-key = { url = "github:folke/which-key.nvim"; flake = false; };
+    blame-line = { url = "github:tveskag/nvim-blame-line"; flake = false; };
+
+    # Programming
+    dap = { url = "github:mfussenegger/nvim-dap"; flake = false; };
+    dap-telescope = { url = "github:nvim-telescope/telescope-dap.nvim"; flake = false; };
+    dap-virtual-text = { url = "github:theHamsta/nvim-dap-virtual-text"; flake = false; };
+    editorconfig = { url = "github:editorconfig/editorconfig-vim"; flake = false; };
+    lang-nix = { url = "github:LnL7/vim-nix"; flake = false; };
+    lightbulb = { url = "github:kosayoda/nvim-lightbulb"; flake = false; };
+    lspconfig = { url = "github:neovim/nvim-lspconfig"; flake = false; };
+    test = { url = "github:vim-test/vim-test"; flake = false; };
+    treesitter = { url = "github:nvim-treesitter/nvim-treesitter"; flake = false;};
+    treesitter-context = { url = "github:romgrk/nvim-treesitter-context"; flake = false;};
+
+    # Workflow
+    completion = { url = "github:nvim-lua/completion-nvim"; flake = false; };
+    popup = { url = "github:nvim-lua/popup.nvim"; flake = false; };
+    startify = { url = "github:mhinz/vim-startify"; flake = false; };
+    telescope = { url = "github:nvim-telescope/telescope.nvim"; flake = false; };
+    which-key = { url = "github:folke/which-key.nvim"; flake = false; };
+
+    # Internals
+    plenary = { url = "github:nvim-lua/plenary.nvim"; flake = false; };
   };
 
   outputs = { self, nixpkgs, neovim, rnix-lsp, ... }@inputs:
   let
     plugins = [
-      "gruvbox"
-      "nord-vim"
-      "vim-startify"
-      "lightline-vim"
-      "nvim-lspconfig"
-      "completion-nvim"
-      "vim-nix"
-      "nvim-dap"
-      "nvim-telescope"
-      "popup-nvim"
-      "plenary-nvim"
-      "nvim-web-devicons"
-      "nvim-tree-lua"
-      "telescope-dap"
+      "theme-gruvbox"
+      "theme-nord"
+      "startify"
+      "statusline-lightline"
+      "lspconfig"
+      "completion"
+      "lang-nix"
+      "dap"
+      "telescope"
+      "popup"
+      "plenary"
+      "devicons"
+      "tree"
+      "dap-telescope"
       "vimagit"
       "fugitive" 
-      "nvim-lightbulb"
-      "nvim-treesitter"
-      "nvim-treesitter-context"
-      "editorconfig-vim"
-      "indent-blankline-nvim"
+      "lightbulb"
+      "treesitter"
+      "treesitter-context"
+      "editorconfig"
+      "indent-blankline"
       "indentline"
-      "nvim-blame-line"
-      "nvim-dap-virtual-text"
-      "vim-cursorword"
-      "vim-test"
-      "nvim-which-key"
+      "blame-line"
+      "dap-virtual-text"
+      "cursorword"
+      "test"
+      "which-key"
     ];
 
     externalBitsOverlay = top: last: {

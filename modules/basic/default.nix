@@ -1,10 +1,15 @@
 { pkgs, lib, config, ...}:
+
 with lib;
 with builtins;
 
 let
+
   cfg = config.vim;
-in {
+
+in
+
+{
   options.vim = {
     colourTerm = mkOption {
       default = true;
@@ -42,10 +47,10 @@ in {
       type = types.bool;
     };
 
-    mapLeaderSpace = mkOption {
-      default = true;
-      description = "Map the space key to leader key";
-      type = types.bool;
+    mapLeader = mkOption {
+      default = ",";
+      description = "Map leader key";
+      type = types.str;
     };
 
     useSystemClipboard = mkOption {
@@ -125,34 +130,28 @@ in {
       description = "New splits will open to the right";
       type = types.bool;
     };
-
   };
 
-  config = (
-    let 
-      writeIf = cond: msg: if cond then msg else "";
-    in {
-    
-    vim.nmap = if (cfg.disableArrows) then {
+  config = {
+    vim.nmap = mkIf cfg.disableArrows {
       "<up>" = "<nop>";
       "<down>" = "<nop>";
       "<left>" = "<nop>";
       "<right>" = "<nop>";
-    } else {};
+    };
 
-    vim.imap = if (cfg.disableArrows) then {
+    vim.imap = mkIf cfg.disableArrows {
       "<up>" = "<nop>";
       "<down>" = "<nop>";
       "<left>" = "<nop>";
       "<right>" = "<nop>";
-    } else {};
+    };
 
-    vim.nnoremap = if (cfg.mapLeaderSpace) then {
+    vim.nnoremap = mkIf (cfg.mapLeader == " ") {
       "<space>" = "<nop>";
-    } else {};
+    };
 
     vim.configRC = ''
-
       "Settings that are set for everything
       set encoding=utf-8
       set mouse=${cfg.mouseSupport}
@@ -166,80 +165,79 @@ in {
       set tm=${toString cfg.mapTimeout}
       set hidden
 
-      ${writeIf cfg.splitBelow ''
+      ${optionalString cfg.splitBelow ''
         set splitbelow
       ''}
 
-      ${writeIf cfg.splitRight ''
+      ${optionalString cfg.splitRight ''
         set splitright
       ''}
 
-      ${writeIf cfg.showSignColumn ''
+      ${optionalString cfg.showSignColumn ''
         set signcolumn=yes
       ''}
 
-      ${writeIf cfg.autoIndent ''
+      ${optionalString cfg.autoIndent ''
         set ai
       ''}
             
-      ${writeIf cfg.preventJunkFiles ''
+      ${optionalString cfg.preventJunkFiles ''
         set noswapfile
         set nobackup
         set nowritebackup
       ''}
 
-      ${writeIf (cfg.bell == "none") ''
+      ${optionalString (cfg.bell == "none") ''
         set noerrorbells
         set novisualbell
       ''}
 
-      ${writeIf (cfg.bell == "on") ''
+      ${optionalString (cfg.bell == "on") ''
         set novisualbell
       ''}
 
-      ${writeIf (cfg.bell == "visual") ''
+      ${optionalString (cfg.bell == "visual") ''
         set noerrorbells
       ''}
 
-      ${writeIf (cfg.lineNumberMode == "relative") ''
+      ${optionalString (cfg.lineNumberMode == "relative") ''
         set relativenumber
       ''}
 
-      ${writeIf (cfg.lineNumberMode == "number") ''
+      ${optionalString (cfg.lineNumberMode == "number") ''
         set number
       ''}
 
-      ${writeIf (cfg.lineNumberMode == "relNumber") ''
+      ${optionalString (cfg.lineNumberMode == "relNumber") ''
         set number relativenumber
       ''}
 
-      ${writeIf cfg.useSystemClipboard ''
+      ${optionalString cfg.useSystemClipboard ''
         set clipboard+=unnamedplus
       ''}
 
-      ${writeIf cfg.mapLeaderSpace ''
-        let mapleader=" "
-        let maplocalleader=" "
+      ${optionalString (cfg.mapLeader != null) ''
+        let mapleader="${cfg.mapLeader}"
+        let maplocalleader="${cfg.mapLeader}"
       ''}
 
-      ${writeIf cfg.syntaxHighlighting ''
+      ${optionalString cfg.syntaxHighlighting ''
         syntax on 
       ''}
 
-      ${writeIf (cfg.wordWrap == false) ''
+      ${optionalString (cfg.wordWrap == false) ''
         set nowrap
       ''}
 
-      ${writeIf cfg.hideSearchHighlight ''
+      ${optionalString cfg.hideSearchHighlight ''
         set nohlsearch
         set incsearch
       ''}
 
-      ${writeIf cfg.colourTerm ''
+      ${optionalString cfg.colourTerm ''
         set termguicolors
         set t_Co=256
       ''}
-
     '';
-  });
+  };
 }
