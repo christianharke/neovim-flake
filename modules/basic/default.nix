@@ -90,7 +90,7 @@ in
     };
 
     cmdHeight = mkOption {
-      default = 2;
+      default = 1;
       description = "Hight of the command pane";
       type = types.int;
     };
