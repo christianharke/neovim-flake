@@ -1,4 +1,7 @@
 # What is this?
+
+[![Build and Test][ci-badge]][ci]
+
 This is my personal neovim config. Feel free to take bits of it to build your own or run it yourself.
 
 As this is my personal config I am bound to change it a lot so I recommend forking rather then pointing to
@@ -32,4 +35,7 @@ The files and scripts in this repository are licensed under the MIT License, whi
 permissive license allowing you to use, modify, copy, distribute, sell, give away, etc. the software. 
 In other words, do what you want with it. The only requirement with the MIT License is that the license 
 and copyright notice must be provided with the software.
+
+[ci]: https://github.com/christianharke/neovim-flake/actions/workflows/ci.yml
+[ci-badge]: https://github.com/christianharke/neovim-flake/actions/workflows/ci.yml/badge.svg
 
