@@ -8,33 +8,33 @@ As this is my personal config I am bound to change it a lot so I recommend forki
 this config.
 
 # How to use
+
 Clone the repo and run the following from the directory:
+
+```bash
+nix run .
 ```
-nix run .#
-```
+
 or
-```
-nix run github:wiltaylor/neovim-flake#.
+
+```bash
+nix run github:christianharke/neovim-flake
 ```
 
 # How to update plugins
-```
+
+```bash
 nix flake update
 ```
 
 # Folder structure
+
 ```
 |-[lib] -- Contains my utility functions
 |-[modules] -- Contains modules which are used to configure neovim
 |-flake.nix -- Flake file
 |-README.md -- This file
 ```
-
-# License
-The files and scripts in this repository are licensed under the MIT License, which is a very 
-permissive license allowing you to use, modify, copy, distribute, sell, give away, etc. the software. 
-In other words, do what you want with it. The only requirement with the MIT License is that the license 
-and copyright notice must be provided with the software.
 
 [ci]: https://github.com/christianharke/neovim-flake/actions/workflows/ci.yml
 [ci-badge]: https://github.com/christianharke/neovim-flake/actions/workflows/ci.yml/badge.svg
