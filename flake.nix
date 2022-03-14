@@ -9,6 +9,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
+
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -52,8 +60,8 @@
     lightbulb = { url = "github:kosayoda/nvim-lightbulb"; flake = false; };
     lspconfig = { url = "github:neovim/nvim-lspconfig"; flake = false; };
     test = { url = "github:vim-test/vim-test"; flake = false; };
-    treesitter = { url = "github:nvim-treesitter/nvim-treesitter"; flake = false;};
-    treesitter-context = { url = "github:romgrk/nvim-treesitter-context"; flake = false;};
+    treesitter = { url = "github:nvim-treesitter/nvim-treesitter"; flake = false; };
+    treesitter-context = { url = "github:romgrk/nvim-treesitter-context"; flake = false; };
 
     # Workflow
     calendar = { url = "github:hoaxdream/calendar-vim"; flake = false; };
@@ -68,117 +76,135 @@
     plenary = { url = "github:nvim-lua/plenary.nvim"; flake = false; };
   };
 
-  outputs = { self, nixpkgs, flake-utils, ... } @ inputs:
+  outputs = { self, nixpkgs, flake-utils, pre-commit-hooks, ... } @ inputs:
     flake-utils.lib.eachDefaultSystem (system:
-  let
-    name = "neovim";
+      let
+        name = "neovim";
 
-    inherit (lib) neovimBuilder;
-    pluginOverlay = lib.buildPluginOverlay;
+        inherit (lib) neovimBuilder;
+        pluginOverlay = lib.buildPluginOverlay;
 
-    plugins = [
-      "calendar"
-      "theme-gruvbox"
-      "theme-nord"
-      "theme-onedark"
-      "startify"
-      "statusline-lightline"
-      "statusline-lightline-onedark"
-      "lspconfig"
-      "completion"
-      "lang-nix"
-      "dap"
-      "telescope"
-      "popup"
-      "plenary"
-      "devicons"
-      "tree"
-      "dap-telescope"
-      "vimagit"
-      "fugitive" 
-      "lightbulb"
-      "treesitter"
-      "treesitter-context"
-      "editorconfig"
-      "indent-blankline"
-      "indentline"
-      "blame-line"
-      "dap-virtual-text"
-      "cursorword"
-      "test"
-      "vimwiki"
-      "which-key"
-    ];
+        plugins = [
+          "calendar"
+          "theme-gruvbox"
+          "theme-nord"
+          "theme-onedark"
+          "startify"
+          "statusline-lightline"
+          "statusline-lightline-onedark"
+          "lspconfig"
+          "completion"
+          "lang-nix"
+          "dap"
+          "telescope"
+          "popup"
+          "plenary"
+          "devicons"
+          "tree"
+          "dap-telescope"
+          "vimagit"
+          "fugitive"
+          "lightbulb"
+          "treesitter"
+          "treesitter-context"
+          "editorconfig"
+          "indent-blankline"
+          "indentline"
+          "blame-line"
+          "dap-virtual-text"
+          "cursorword"
+          "test"
+          "vimwiki"
+          "which-key"
+        ];
 
-    neovimPkg = neovimBuilder {
-      config = {
-        vim.viAlias = true;
-        vim.vimAlias = true;
-        vim.dashboard.startify.enable = true;
-        vim.theme.onedark.enable = true;
-        vim.disableArrows = true;
-        vim.statusline.lightline.enable = true;
-        vim.statusline.lightline.theme = "onedark";
-        vim.lsp.enable = true;
-        vim.lsp.bash = true;
-        vim.lsp.go = true;
-        vim.lsp.nix = true;
-        vim.lsp.python = true;
-        vim.lsp.ruby = true;
-        vim.lsp.rust = true;
-        vim.lsp.terraform = true;
-        vim.lsp.typescript = true;
-        vim.lsp.vimscript = true;
-        vim.lsp.yaml = true;
-        vim.lsp.docker = true;
-        vim.lsp.tex = true;
-        vim.lsp.css = true;
-        vim.lsp.html = true;
-        vim.lsp.json = true;
-        vim.lsp.clang = true;
-        vim.lsp.cmake = false; # Currently broken
-        vim.lsp.lightbulb = true;
-        vim.lsp.variableDebugPreviews = true;
-        vim.fuzzyfind.telescope.enable = true;
-        vim.filetree.nvimTreeLua.enable = true;
-        vim.git.enable = true;
-        vim.formatting.editorConfig.enable = true;
-        vim.editor.indentGuide = true;
-        vim.editor.underlineCurrentWord = true;
-        vim.test.enable = true;
-        vim.wiki.enable = true;
-      };
-    };
+        neovimPkg = neovimBuilder {
+          config = {
+            vim.viAlias = true;
+            vim.vimAlias = true;
+            vim.dashboard.startify.enable = true;
+            vim.theme.onedark.enable = true;
+            vim.disableArrows = true;
+            vim.statusline.lightline.enable = true;
+            vim.statusline.lightline.theme = "onedark";
+            vim.lsp.enable = true;
+            vim.lsp.bash = true;
+            vim.lsp.go = true;
+            vim.lsp.nix = true;
+            vim.lsp.python = true;
+            vim.lsp.ruby = true;
+            vim.lsp.rust = true;
+            vim.lsp.terraform = true;
+            vim.lsp.typescript = true;
+            vim.lsp.vimscript = true;
+            vim.lsp.yaml = true;
+            vim.lsp.docker = true;
+            vim.lsp.tex = true;
+            vim.lsp.css = true;
+            vim.lsp.html = true;
+            vim.lsp.json = true;
+            vim.lsp.clang = true;
+            vim.lsp.cmake = false; # Currently broken
+            vim.lsp.lightbulb = true;
+            vim.lsp.variableDebugPreviews = true;
+            vim.fuzzyfind.telescope.enable = true;
+            vim.filetree.nvimTreeLua.enable = true;
+            vim.git.enable = true;
+            vim.formatting.editorConfig.enable = true;
+            vim.editor.indentGuide = true;
+            vim.editor.underlineCurrentWord = true;
+            vim.test.enable = true;
+            vim.wiki.enable = true;
+          };
+        };
 
-    pkgs = import nixpkgs {
-      inherit system;
-      overlays = [
-        pluginOverlay
-        (final: prev: {
-          rnix-lsp = inputs.rnix-lsp.defaultPackage.${system};
-        })
-        inputs.neovim-nightly-overlay.overlay
-      ];
-    };
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = [
+            pluginOverlay
+            (final: prev: {
+              rnix-lsp = inputs.rnix-lsp.defaultPackage.${system};
+            })
+            inputs.neovim-nightly-overlay.overlay
+          ];
+        };
 
-    lib = import ./lib { inherit pkgs inputs plugins; };
-  in
-  rec {
+        lib = import ./lib { inherit pkgs inputs plugins; };
+      in
+      rec {
 
-    apps.${name} = flake-utils.lib.mkApp {
-      drv = packages.${name};
-      exePath = "/bin/nvim";
-    };
-    defaultApp = apps.${name};
+        apps.${name} = flake-utils.lib.mkApp {
+          drv = packages.${name};
+          exePath = "/bin/nvim";
+        };
+        defaultApp = apps.${name};
 
-    packages.${name} = neovimPkg;
-    defaultPackage = packages.${name};
+        packages.${name} = neovimPkg;
+        defaultPackage = packages.${name};
 
-    devShell = pkgs.mkShell {
-      buildInputs = [ defaultPackage ];
-      shellHook = ''
-        figlet ${name} | lolcat --freq 0.5
-      '';
-    };
-  });
+        checks = {
+          build = pkgs.${name};
+
+          pre-commit-check = pre-commit-hooks.lib.${system}.run {
+            src = ./.;
+            hooks.nixpkgs-fmt.enable = true;
+          };
+        };
+
+        devShell = pkgs.mkShell {
+          buildInputs = with pkgs; [
+            # banner printing on enter
+            figlet
+            lolcat
+
+            nixpkgs-fmt
+
+            defaultPackage
+          ];
+          shellHook = ''
+            figlet ${name} | lolcat --freq 0.5
+            ${(checks.pre-commit-check).shellHook}
+          '';
+        };
+      });
 }

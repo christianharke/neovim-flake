@@ -8,12 +8,12 @@ let
 
   vimOptions = lib.evalModules {
     modules = [
-      { imports = [../modules]; }
-      config 
+      { imports = [ ../modules ]; }
+      config
     ];
 
     specialArgs = {
-      inherit pkgs; 
+      inherit pkgs;
     };
   };
 

@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ...}:
+{ pkgs, lib, config, ... }:
 
 with lib;
 with builtins;
@@ -68,7 +68,7 @@ in
     lineNumberMode = mkOption {
       default = "relNumber";
       description = "How line numbers are displayed. none, relative, number, relNumber";
-      type = with types; enum ["relative" "number" "relNumber" "none"];
+      type = with types; enum [ "relative" "number" "relNumber" "none" ];
     };
 
     preventJunkFiles = mkOption {

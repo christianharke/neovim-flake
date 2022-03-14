@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ...}:
+{ pkgs, config, lib, ... }:
 
 with lib;
 with builtins;
@@ -8,7 +8,7 @@ let
   cfg = config.vim.filetree.nvimTreeLua;
 
 in
-  
+
 {
   options.vim.filetree.nvimTreeLua = {
     enable = mkEnableOption "Enable nvim-tree-lua";
@@ -22,7 +22,7 @@ in
     treeSide = mkOption {
       default = "left";
       description = "Side the tree will appear on left or right";
-      type = types.enum ["left" "right"];
+      type = types.enum [ "left" "right" ];
     };
 
     treeWidth = mkOption {
@@ -112,74 +112,76 @@ in
 
   config = mkIf cfg.enable (
     let
-      mkVimBool =  val: if val then 1 else 0;
-    in {
-    vim.startPlugins = with pkgs.neovimPlugins; [ tree ]
-      ++ optional cfg.devIcons devicons;
+      mkVimBool = val: if val then 1 else 0;
+    in
+    {
+      vim.startPlugins = with pkgs.neovimPlugins; [ tree ]
+        ++ optional cfg.devIcons devicons;
 
-    vim.nnoremap = {
-      "<leader>fn" = "<cmd>NvimTreeToggle<cr>";
-    };
+      vim.nnoremap = {
+        "<leader>fn" = "<cmd>NvimTreeToggle<cr>";
+      };
 
-    vim.luaConfigRC= ''
-      local wk = require("which-key")
+      vim.luaConfigRC = ''
+        local wk = require("which-key")
 
-      wk.register({
-        f = {
-          name = "File Management",
-          n = {"File Tree"},
-        },
-      }, { prefix = "<leader>" })
+        wk.register({
+          f = {
+            name = "File Management",
+            n = {"File Tree"},
+          },
+        }, { prefix = "<leader>" })
 
 
-      require'nvim-tree'.setup {
-        disable_netrw       = ${toString cfg.disableNetRW},
-        hijack_netrw        = true,
-        open_on_setup       = false,
-        ignore_ft_on_setup  = {},
-        update_to_buf_dir   = {
-          enable = true,
-          auto_open = ${toString cfg.openOnDirectoryStart},
-        },
-        auto_close          = ${toString cfg.closeOnLastWindow},
-        open_on_tab         = false,
-        hijack_cursor       = false,
-        update_cwd          = false,
-        update_focused_file = {
-          enable      = false,
-          update_cwd  = false,
-          ignore_list = {}
-        },
-        system_open = {
-          cmd  = nil,
-          args = {}
-        },
-        filters = {
-          dotfiles = ${if cfg.hideDotFiles then "true" else "false"},
-          custom = {".git","node_modules",".cache"}          
-        },
-        git = {
-          enable = true,
-          ignore = ${if cfg.hideIgnoredGitFiles then "true" else "false"}
-        },
-        view = {
-          width = ${toString cfg.treeWidth},
-          side = '${cfg.treeSide}',
-          auto_resize = false,
-          mappings = {
-            custom_only = false,
-            list = {}
+        require'nvim-tree'.setup {
+          disable_netrw       = ${toString cfg.disableNetRW},
+          hijack_netrw        = true,
+          open_on_setup       = false,
+          ignore_ft_on_setup  = {},
+          update_to_buf_dir   = {
+            enable = true,
+            auto_open = ${toString cfg.openOnDirectoryStart},
+          },
+          auto_close          = ${toString cfg.closeOnLastWindow},
+          open_on_tab         = false,
+          hijack_cursor       = false,
+          update_cwd          = false,
+          update_focused_file = {
+            enable      = false,
+            update_cwd  = false,
+            ignore_list = {}
+          },
+          system_open = {
+            cmd  = nil,
+            args = {}
+          },
+          filters = {
+            dotfiles = ${if cfg.hideDotFiles then "true" else "false"},
+            custom = {".git","node_modules",".cache"}          
+          },
+          git = {
+            enable = true,
+            ignore = ${if cfg.hideIgnoredGitFiles then "true" else "false"}
+          },
+          view = {
+            width = ${toString cfg.treeWidth},
+            side = '${cfg.treeSide}',
+            auto_resize = false,
+            mappings = {
+              custom_only = false,
+              list = {}
+            }
           }
         }
-      }
-    '';
+      '';
 
-    vim.globals = {
-      "nvim_tree_quit_on_open" = mkVimBool cfg.closeOnFileOpen;
-      "nvim_tree_indent_markers" = mkVimBool cfg.indentMarkers;
-      "nvim_tree_add_trailing" = mkVimBool cfg.trailingSlash;
-      "nvim_tree_group_empty" = mkVimBool cfg.groupEmptyFolders;
-    };
-  });
+      vim.globals = {
+        "nvim_tree_quit_on_open" = mkVimBool cfg.closeOnFileOpen;
+        "nvim_tree_indent_markers" = mkVimBool cfg.indentMarkers;
+        "nvim_tree_add_trailing" = mkVimBool cfg.trailingSlash;
+        "nvim_tree_group_empty" = mkVimBool cfg.groupEmptyFolders;
+      };
+    }
+  );
 }
 

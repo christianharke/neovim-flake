@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ...}:
+{ pkgs, config, lib, ... }:
 
 with lib;
 with builtins;
@@ -69,7 +69,7 @@ in
       colorscheme nord
     '';
 
-    vim.startPlugins = with pkgs.neovimPlugins; [theme-nord];
+    vim.startPlugins = with pkgs.neovimPlugins; [ theme-nord ];
 
     vim.globals = {
       "nord_cursor_line_number_background" = mkVimBool cfg.lineNumberBackgroundColoured;

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ...}:
+{ config, lib, pkgs, ... }:
 
 with lib;
 with builtins;
@@ -16,7 +16,8 @@ let
     type = with types; attrsOf (nullOr str);
   } // it);
 
-in {
+in
+{
   options.vim = {
     viAlias = mkOption {
       description = "Enable vi alias";
@@ -27,7 +28,7 @@ in {
     vimAlias = mkOption {
       description = "Enable vim alias";
       type = types.bool;
-      default = true; 
+      default = true;
     };
 
     configRC = mkOption {
@@ -51,11 +52,11 @@ in {
     optPlugins = mkOption {
       description = "List of plugins to optionally load";
       default = [ ];
-      type =  with types; listOf package;
+      type = with types; listOf package;
     };
 
     globals = mkOption {
-      default = {};
+      default = { };
       description = "Set containing global variable values";
       type = types.attrs;
     };
@@ -125,57 +126,59 @@ in {
     };
   };
 
-  config = let
-    filterNonNull = mappings: filterAttrs (name: value: value != null) mappings;
-    globalsScript = mapAttrsFlatten(name: value: "let g:${name}=${toJSON value}") (filterNonNull cfg.globals);
+  config =
+    let
+      filterNonNull = mappings: filterAttrs (name: value: value != null) mappings;
+      globalsScript = mapAttrsFlatten (name: value: "let g:${name}=${toJSON value}") (filterNonNull cfg.globals);
 
-    matchCtrl = it: match "Ctrl-(.)(.*)" it;
-    mapKeybinding = it:
-      let groups = matchCtrl it; in if groups == null then it else "<C-${toUpper (head groups)}>${head (tail groups)}";
+      matchCtrl = it: match "Ctrl-(.)(.*)" it;
+      mapKeybinding = it:
+        let groups = matchCtrl it; in if groups == null then it else "<C-${toUpper (head groups)}>${head (tail groups)}";
       mapVimBinding = prefix: mappings: mapAttrsFlatten (name: value: "${prefix} ${mapKeybinding name} ${value}") (filterNonNull mappings);
-    
-    nmap = mapVimBinding "nmap" config.vim.nmap;
-    imap = mapVimBinding "imap" config.vim.imap;
-    vmap = mapVimBinding "vmap" config.vim.vmap;
-    xmap = mapVimBinding "xmap" config.vim.xmap;
-    smap = mapVimBinding "smap" config.vim.smap;
-    cmap = mapVimBinding "cmap" config.vim.cmap;
-    omap = mapVimBinding "omap" config.vim.omap;
-    tmap = mapVimBinding "tmap" config.vim.tmap;
-    
-    nnoremap = mapVimBinding "nnoremap" config.vim.nnoremap;
-    inoremap = mapVimBinding "inoremap" config.vim.inoremap;
-    vnoremap = mapVimBinding "vnoremap" config.vim.vnoremap;
-    xnoremap = mapVimBinding "xnoremap" config.vim.xnoremap;
-    snoremap = mapVimBinding "snoremap" config.vim.snoremap;
-    cnoremap = mapVimBinding "cnoremap" config.vim.cnoremap;
-    onoremap = mapVimBinding "onoremap" config.vim.onoremap;
-    tnoremap = mapVimBinding "tnoremap" config.vim.tnoremap;
 
-  in {
-    vim.configRC = ''
-      " Lua config from vim.luaConfigRC
-      ${wrapLuaConfig cfg.luaConfigRC}
+      nmap = mapVimBinding "nmap" config.vim.nmap;
+      imap = mapVimBinding "imap" config.vim.imap;
+      vmap = mapVimBinding "vmap" config.vim.vmap;
+      xmap = mapVimBinding "xmap" config.vim.xmap;
+      smap = mapVimBinding "smap" config.vim.smap;
+      cmap = mapVimBinding "cmap" config.vim.cmap;
+      omap = mapVimBinding "omap" config.vim.omap;
+      tmap = mapVimBinding "tmap" config.vim.tmap;
 
-        ${builtins.concatStringsSep "\n" nmap}
-        ${builtins.concatStringsSep "\n" imap}
-        ${builtins.concatStringsSep "\n" vmap}
-        ${builtins.concatStringsSep "\n" xmap}
-        ${builtins.concatStringsSep "\n" smap}
-        ${builtins.concatStringsSep "\n" cmap}
-        ${builtins.concatStringsSep "\n" omap}
-        ${builtins.concatStringsSep "\n" tmap}
-        ${builtins.concatStringsSep "\n" nnoremap}
-        ${builtins.concatStringsSep "\n" inoremap}
-        ${builtins.concatStringsSep "\n" vnoremap}
-        ${builtins.concatStringsSep "\n" xnoremap}
-        ${builtins.concatStringsSep "\n" snoremap}
-        ${builtins.concatStringsSep "\n" cnoremap}
-        ${builtins.concatStringsSep "\n" onoremap}
-        ${builtins.concatStringsSep "\n" tnoremap}
+      nnoremap = mapVimBinding "nnoremap" config.vim.nnoremap;
+      inoremap = mapVimBinding "inoremap" config.vim.inoremap;
+      vnoremap = mapVimBinding "vnoremap" config.vim.vnoremap;
+      xnoremap = mapVimBinding "xnoremap" config.vim.xnoremap;
+      snoremap = mapVimBinding "snoremap" config.vim.snoremap;
+      cnoremap = mapVimBinding "cnoremap" config.vim.cnoremap;
+      onoremap = mapVimBinding "onoremap" config.vim.onoremap;
+      tnoremap = mapVimBinding "tnoremap" config.vim.tnoremap;
 
-      ${concatStringsSep "\n" globalsScript}
-    '';
-  };
+    in
+    {
+      vim.configRC = ''
+        " Lua config from vim.luaConfigRC
+        ${wrapLuaConfig cfg.luaConfigRC}
+
+          ${builtins.concatStringsSep "\n" nmap}
+          ${builtins.concatStringsSep "\n" imap}
+          ${builtins.concatStringsSep "\n" vmap}
+          ${builtins.concatStringsSep "\n" xmap}
+          ${builtins.concatStringsSep "\n" smap}
+          ${builtins.concatStringsSep "\n" cmap}
+          ${builtins.concatStringsSep "\n" omap}
+          ${builtins.concatStringsSep "\n" tmap}
+          ${builtins.concatStringsSep "\n" nnoremap}
+          ${builtins.concatStringsSep "\n" inoremap}
+          ${builtins.concatStringsSep "\n" vnoremap}
+          ${builtins.concatStringsSep "\n" xnoremap}
+          ${builtins.concatStringsSep "\n" snoremap}
+          ${builtins.concatStringsSep "\n" cnoremap}
+          ${builtins.concatStringsSep "\n" onoremap}
+          ${builtins.concatStringsSep "\n" tnoremap}
+
+        ${concatStringsSep "\n" globalsScript}
+      '';
+    };
 
 }

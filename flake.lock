@@ -401,19 +401,26 @@
         "type": "github"
       }
     },
-    "ranger": {
-      "flake": false,
+    "pre-commit-hooks": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
       "locked": {
-        "lastModified": 1639424624,
-        "narHash": "sha256-oTLZJNNTwbDBMLEH9jMVylXVwUrswtp4J9PB1anZ3+U=",
-        "owner": "rafaqz",
-        "repo": "ranger.vim",
-        "rev": "527c7c5371667f7848da91c2abc75c3998cbf1a0",
+        "lastModified": 1646153636,
+        "narHash": "sha256-AlWHMzK+xJ1mG267FdT8dCq/HvLCA6jwmx2ZUy5O8tY=",
+        "owner": "cachix",
+        "repo": "pre-commit-hooks.nix",
+        "rev": "b6bc0b21e1617e2b07d8205e7fae7224036dfa4b",
         "type": "github"
       },
       "original": {
-        "owner": "rafaqz",
-        "repo": "ranger.vim",
+        "owner": "cachix",
+        "repo": "pre-commit-hooks.nix",
         "type": "github"
       }
     },
@@ -463,7 +470,7 @@
         "nixpkgs": "nixpkgs",
         "plenary": "plenary",
         "popup": "popup",
-        "ranger": "ranger",
+        "pre-commit-hooks": "pre-commit-hooks",
         "rnix-lsp": "rnix-lsp",
         "startify": "startify",
         "statusline-lightline": "statusline-lightline",

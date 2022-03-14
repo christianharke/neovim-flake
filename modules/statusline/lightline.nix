@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ...}:
+{ pkgs, config, lib, ... }:
 
 with lib;
 with builtins;
@@ -16,7 +16,7 @@ in
     theme = mkOption {
       default = "wombat";
       description = "Theme for light line. Can be: powerline, wombat, jellybeans, solarized dark, solarized light, papercolor dark, papercolor light, seoul256, onedark, onelight, landscape";
-      type = types.enum ["wombat" "powerline" "jellybeans" "solarized dark" "solarized dark" "papercolor dark" "papercolor light" "seoul256" "onedark" "onelight" "landscape"];
+      type = types.enum [ "wombat" "powerline" "jellybeans" "solarized dark" "solarized dark" "papercolor dark" "papercolor light" "seoul256" "onedark" "onelight" "landscape" ];
     };
   };
 

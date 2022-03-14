@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ...}:
+{ pkgs, config, lib, ... }:
 
 with lib;
 with builtins;
@@ -7,7 +7,8 @@ let
   cfg = config.vim.lsp;
 
   debugpy = pkgs.python3.withPackages (pyPkg: with pyPkg; [ debugpy ]);
-in {
+in
+{
 
   options.vim.lsp = {
     enable = mkEnableOption "Enable lsp support";
@@ -35,7 +36,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    vim.startPlugins = with pkgs.neovimPlugins; [ 
+    vim.startPlugins = with pkgs.neovimPlugins; [
       completion
       dap
       lspconfig

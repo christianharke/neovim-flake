@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ...}:
+{ pkgs, config, lib, ... }:
 
 with lib;
 with builtins;
@@ -28,9 +28,9 @@ in
       ++ optional cfg.underlineCurrentWord cursorword;
 
     vim.nnoremap = {
-     "<leader>wc" = "<cmd>close<cr>";
-     "<leader>wh" = "<cmd>split<cr>";
-     "<leader>wv" = "<cmd>vsplit<cr>";
+      "<leader>wc" = "<cmd>close<cr>";
+      "<leader>wh" = "<cmd>split<cr>";
+      "<leader>wv" = "<cmd>vsplit<cr>";
     };
 
     vim.luaConfigRC = ''
