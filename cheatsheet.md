@@ -173,21 +173,31 @@ Leader Key is Space
  - `ctrl + wk` - Move to above window
 
 # File tree
- - `leader + n` - Toggle file tree
+ - `leader + fn` - Toggle file tree
  - `a` - Add new file (or folder if you leave a / at end)
  - `r` - Rename file
  - `d` - Delete file or folder
+ - `D` - Trash file or folder
  - `y` - Copy file name to system clipboard
  - `Y` - Copy relative path to system clipboard
  - `gy` - Copy absolute path to system clipboard.
- - `x` - cut file
- - `p` - paste file from clipboard
- - `ctrl + v` - open in vert split
- - `ctrl + x` - open in horizontal split
+ - `x` - Cut file
+ - `c` - Copy file
+ - `p` - Paste file from clipboard
+ - `-` - Navigate to the parent directory of current file
+ - `ctrl + ]` - Cd into directory
+ - `ctrl + v` - Open in vert split
+ - `ctrl + x` - Open in horizontal split
+ - `ctrl + t` - Open in new tab
  - `tab` - Open file but stay in tree (preview)
+ - `s` - Open file or folder in system's default application
  - `R` - Refresh tree
- - `I` - toggle hidden folders visability
- - `H` - toggle dot files visability
+ - `I` - Toggle hidden folders visability
+ - `H` - Toggle dot files visability
+ - `W` - Collapse whole tree
+ - `S` - Prompt path to expand
+ - `.` - Vim command mode
+ - `ctrl + k` - Show file infos
 
 # Telescope
  - `leader + ff` - Find file
