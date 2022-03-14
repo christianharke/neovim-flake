@@ -477,6 +477,7 @@
         "treesitter": "treesitter",
         "treesitter-context": "treesitter-context",
         "vimagit": "vimagit",
+        "vimwiki": "vimwiki",
         "which-key": "which-key"
       }
     },
@@ -669,6 +670,22 @@
       "original": {
         "owner": "jreybert",
         "repo": "vimagit",
+        "type": "github"
+      }
+    },
+    "vimwiki": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1646877853,
+        "narHash": "sha256-GxAuvvqfmfQRNkNrHyUVclq11es8LtIGlNzhmdYacbM=",
+        "owner": "vimwiki",
+        "repo": "vimwiki",
+        "rev": "63af6e72dd3fa840bffb3ebcb8c96970c02e0913",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vimwiki",
+        "repo": "vimwiki",
         "type": "github"
       }
     },

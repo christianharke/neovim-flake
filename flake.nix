@@ -56,10 +56,12 @@
     treesitter-context = { url = "github:romgrk/nvim-treesitter-context"; flake = false;};
 
     # Workflow
+    calendar = { url = "github:hoaxdream/calendar-vim"; flake = false; };
     completion = { url = "github:nvim-lua/completion-nvim"; flake = false; };
     popup = { url = "github:nvim-lua/popup.nvim"; flake = false; };
     startify = { url = "github:mhinz/vim-startify"; flake = false; };
     telescope = { url = "github:nvim-telescope/telescope.nvim"; flake = false; };
+    vimwiki = { url = "github:vimwiki/vimwiki"; flake = false; };
     which-key = { url = "github:folke/which-key.nvim"; flake = false; };
 
     # Internals
@@ -75,6 +77,7 @@
     pluginOverlay = lib.buildPluginOverlay;
 
     plugins = [
+      "calendar"
       "theme-gruvbox"
       "theme-nord"
       "theme-onedark"
@@ -103,6 +106,7 @@
       "dap-virtual-text"
       "cursorword"
       "test"
+      "vimwiki"
       "which-key"
     ];
 
@@ -142,6 +146,7 @@
         vim.editor.indentGuide = true;
         vim.editor.underlineCurrentWord = true;
         vim.test.enable = true;
+        vim.wiki.enable = true;
       };
     };
 

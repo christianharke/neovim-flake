@@ -13,5 +13,6 @@
     ./formating
     ./editor
     ./test
+    ./wiki
   ];
 }
