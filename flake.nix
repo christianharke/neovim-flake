@@ -187,7 +187,10 @@
 
           pre-commit-check = pre-commit-hooks.lib.${system}.run {
             src = ./.;
-            hooks.nixpkgs-fmt.enable = true;
+            hooks = {
+              nixpkgs-fmt.enable = true;
+              statix.enable = true;
+            };
           };
         };
 
@@ -198,12 +201,13 @@
             lolcat
 
             nixpkgs-fmt
+            statix
 
             defaultPackage
           ];
           shellHook = ''
             figlet ${name} | lolcat --freq 0.5
-            ${(checks.pre-commit-check).shellHook}
+            ${checks.pre-commit-check.shellHook}
           '';
         };
       });

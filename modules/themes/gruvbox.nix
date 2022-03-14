@@ -158,7 +158,7 @@ in
     };
   };
 
-  config = mkIf (cfg.enable)
+  config = mkIf cfg.enable
     (
       let
         mkVimBool = val: if val then "1" else "0";

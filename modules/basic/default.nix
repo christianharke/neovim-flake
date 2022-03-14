@@ -225,7 +225,7 @@ in
         syntax on 
       ''}
 
-      ${optionalString (cfg.wordWrap == false) ''
+      ${optionalString (!cfg.wordWrap) ''
         set nowrap
       ''}
 

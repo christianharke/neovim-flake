@@ -128,10 +128,10 @@ in
 
   config =
     let
-      filterNonNull = mappings: filterAttrs (name: value: value != null) mappings;
+      filterNonNull = filterAttrs (name: value: value != null);
       globalsScript = mapAttrsFlatten (name: value: "let g:${name}=${toJSON value}") (filterNonNull cfg.globals);
 
-      matchCtrl = it: match "Ctrl-(.)(.*)" it;
+      matchCtrl = match "Ctrl-(.)(.*)";
       mapKeybinding = it:
         let groups = matchCtrl it; in if groups == null then it else "<C-${toUpper (head groups)}>${head (tail groups)}";
       mapVimBinding = prefix: mappings: mapAttrsFlatten (name: value: "${prefix} ${mapKeybinding name} ${value}") (filterNonNull mappings);

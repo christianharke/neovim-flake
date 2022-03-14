@@ -4,7 +4,7 @@
 
 let
 
-  neovimPlugins = pkgs.neovimPlugins;
+  inherit (pkgs) neovimPlugins;
 
   vimOptions = lib.evalModules {
     modules = [
@@ -17,13 +17,13 @@ let
     };
   };
 
-  vim = vimOptions.config.vim;
+  inherit (vimOptions.config) vim;
 
 in
 
 pkgs.wrapNeovim pkgs.neovim-unwrapped {
-  viAlias = vim.viAlias;
-  vimAlias = vim.vimAlias;
+  inherit (vim) viAlias;
+  inherit (vim) vimAlias;
   configure = {
     customRC = vim.configRC;
 
