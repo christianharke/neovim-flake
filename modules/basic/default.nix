@@ -10,6 +10,10 @@ let
 in
 
 {
+  imports = [
+    ./markdown.nix
+  ];
+
   options.vim = {
     colourTerm = mkOption {
       default = true;

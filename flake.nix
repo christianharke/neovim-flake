@@ -153,6 +153,7 @@
             vim.formatting.editorConfig.enable = true;
             vim.editor.indentGuide = true;
             vim.editor.underlineCurrentWord = true;
+            vim.markdown.enable = true;
             vim.test.enable = true;
             vim.wiki.enable = true;
           };
