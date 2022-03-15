@@ -1,4 +1,4 @@
-Leader Key is Space
+Leader Key is `,`
 
 # Global Commands:
  - `:h keyword` - Bring up help for keyword
