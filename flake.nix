@@ -37,8 +37,8 @@
     # Appearance
     cursorword = { url = "github:itchyny/vim-cursorword"; flake = false; };
     devicons = { url = "github:kyazdani42/nvim-web-devicons"; flake = false; };
-    indentline = { url = "github:Yggdroot/indentLine"; flake = false; };
     indent-blankline = { url = "github:lukas-reineke/indent-blankline.nvim"; flake = false; };
+    indentline = { url = "github:Yggdroot/indentLine"; flake = false; };
     statusline-lightline = { url = "github:itchyny/lightline.vim"; flake = false; };
     statusline-lightline-onedark = { url = "github:NovaDev94/lightline-onedark"; flake = false; };
     theme-gruvbox = { url = "github:morhetz/gruvbox"; flake = false; };
@@ -47,9 +47,9 @@
     tree = { url = "github:kyazdani42/nvim-tree.lua"; flake = false; };
 
     # Git
-    vimagit = { url = "github:jreybert/vimagit"; flake = false; };
-    fugitive = { url = "github:tpope/vim-fugitive"; flake = false; };
     blame-line = { url = "github:tveskag/nvim-blame-line"; flake = false; };
+    fugitive = { url = "github:tpope/vim-fugitive"; flake = false; };
+    vimagit = { url = "github:jreybert/vimagit"; flake = false; };
 
     # Programming
     dap = { url = "github:mfussenegger/nvim-dap"; flake = false; };
@@ -85,76 +85,79 @@
         pluginOverlay = lib.buildPluginOverlay;
 
         plugins = [
+          "blame-line"
           "calendar"
-          "theme-gruvbox"
-          "theme-nord"
-          "theme-onedark"
+          "completion"
+          "cursorword"
+          "dap"
+          "dap-telescope"
+          "dap-virtual-text"
+          "devicons"
+          "editorconfig"
+          "fugitive"
+          "indent-blankline"
+          "indentline"
+          "lang-nix"
+          "lightbulb"
+          "lspconfig"
+          "plenary"
+          "popup"
           "startify"
           "statusline-lightline"
           "statusline-lightline-onedark"
-          "lspconfig"
-          "completion"
-          "lang-nix"
-          "dap"
           "telescope"
-          "popup"
-          "plenary"
-          "devicons"
+          "test"
+          "theme-gruvbox"
+          "theme-nord"
+          "theme-onedark"
           "tree"
-          "dap-telescope"
-          "vimagit"
-          "fugitive"
-          "lightbulb"
           "treesitter"
           "treesitter-context"
-          "editorconfig"
-          "indent-blankline"
-          "indentline"
-          "blame-line"
-          "dap-virtual-text"
-          "cursorword"
-          "test"
+          "vimagit"
           "vimwiki"
           "which-key"
         ];
 
         neovimPkg = neovimBuilder {
           config = {
+            # Core
             vim.viAlias = true;
             vim.vimAlias = true;
+
+            # Modules
             vim.dashboard.startify.enable = true;
-            vim.theme.onedark.enable = true;
             vim.disableArrows = true;
-            vim.statusline.lightline.enable = true;
-            vim.statusline.lightline.theme = "onedark";
-            vim.lsp.enable = true;
+            vim.editor.indentGuide = true;
+            vim.editor.underlineCurrentWord = true;
+            vim.filetree.nvimTreeLua.enable = true;
+            vim.formatting.editorConfig.enable = true;
+            vim.fuzzyfind.telescope.enable = true;
+            vim.git.enable = true;
             vim.lsp.bash = true;
+            vim.lsp.clang = true;
+            vim.lsp.cmake = false; # Currently broken
+            vim.lsp.css = true;
+            vim.lsp.docker = true;
+            vim.lsp.enable = true;
             vim.lsp.go = true;
+            vim.lsp.html = true;
+            vim.lsp.json = true;
+            vim.lsp.lightbulb = true;
             vim.lsp.nix = true;
             vim.lsp.python = true;
             vim.lsp.ruby = true;
             vim.lsp.rust = true;
             vim.lsp.terraform = true;
+            vim.lsp.tex = true;
             vim.lsp.typescript = true;
+            vim.lsp.variableDebugPreviews = true;
             vim.lsp.vimscript = true;
             vim.lsp.yaml = true;
-            vim.lsp.docker = true;
-            vim.lsp.tex = true;
-            vim.lsp.css = true;
-            vim.lsp.html = true;
-            vim.lsp.json = true;
-            vim.lsp.clang = true;
-            vim.lsp.cmake = false; # Currently broken
-            vim.lsp.lightbulb = true;
-            vim.lsp.variableDebugPreviews = true;
-            vim.fuzzyfind.telescope.enable = true;
-            vim.filetree.nvimTreeLua.enable = true;
-            vim.git.enable = true;
-            vim.formatting.editorConfig.enable = true;
-            vim.editor.indentGuide = true;
-            vim.editor.underlineCurrentWord = true;
             vim.markdown.enable = true;
+            vim.statusline.lightline.enable = true;
+            vim.statusline.lightline.theme = "onedark";
             vim.test.enable = true;
+            vim.theme.onedark.enable = true;
             vim.wiki.enable = true;
           };
         };
