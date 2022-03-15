@@ -20,7 +20,6 @@ in
     vim.configRC = ''
       set nocompatible
 
-      filetype plugin on
       let g:vimwiki_global_ext = 0
       syntax on
 
@@ -32,7 +31,7 @@ in
       let g:vimwiki_list = [nextcloud_notes]
       let g:vimwiki_dir_link = 'index'
 
-      autocmd FileType vimwiki setlocal spell spelllang=de_ch
+      autocmd FileType vimwiki setlocal spell spelllang=de_ch,en_gb
 
       function! VimwikiFindIncompleteTasks()
         lvimgrep /- \[ \]/ %:p

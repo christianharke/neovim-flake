@@ -24,6 +24,9 @@ in
       " Treat all .md files as markdown
       autocmd BufNewFile,BufRead *.md set filetype=markdown
 
+      " Set spell check language
+      autocmd FileType markdown setlocal spell spelllang=de_ch,en_gb
+
       " Set text width
       autocmd FileType markdown setlocal textwidth=100
 
