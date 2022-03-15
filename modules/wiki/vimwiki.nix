@@ -26,7 +26,7 @@ in
       let nextcloud_notes = {}
       let nextcloud_notes.path = '~/Nextcloud/Notes/'
       let nextcloud_notes.syntax = 'markdown'
-      let nextcloud_notes.ext = 'txt'
+      let nextcloud_notes.ext = 'md'
       let nextcloud_notes.list_margin = 0
       let g:vimwiki_list = [nextcloud_notes]
       let g:vimwiki_dir_link = 'index'
