@@ -27,20 +27,41 @@ in
       ++ optionals cfg.indentGuide [ indent-blankline indentline ]
       ++ optional cfg.underlineCurrentWord cursorword;
 
+    vim.imap = {
+      "<F2>" = "<Esc>ggO#!/usr/bin/env";
+    };
+
     vim.nnoremap = {
+      "<C-h>" = "<C-w>h";
+      "<C-j>" = "<C-w>j";
+      "<C-k>" = "<C-w>k";
+      "<C-l>" = "<C-w>l";
+      "<leader>tt" = "<cmd>split<bar>terminal<cr>";
+      "<leader>tv" = "<cmd>vsplit<bar>terminal<cr>";
       "<leader>wc" = "<cmd>close<cr>";
-      "<leader>wh" = "<cmd>split<cr>";
+      "<leader>ws" = "<cmd>split<cr>";
       "<leader>wv" = "<cmd>vsplit<cr>";
+      "<leader>wh" = "<C-w>t<C-w>H";
+      "<leader>wk" = "<C-w>t<C-w>K";
+      "<silent> <C-Left>" = "<cmd>vertical<bar>resize<bar>+3<cr>";
+      "<silent> <C-Right>" = "<cmd>vertical<bar>resize<bar>-3<cr>";
+      "<silent> <C-Up>" = "<cmd>resize<bar>+3<cr>";
+      "<silent> <C-Down>" = "<cmd>resize<bar>-3<cr>";
     };
 
     vim.luaConfigRC = ''
       local wk = require("which-key")
 
       wk.register({
+        t = {
+          name = "terminal",
+          t = { "Split Horizontal" },
+          v = { "Split Vertical" },
+        },
         w = {
           name = "window",
           c = { "Close Window"},
-          h = { "Split Horizontal" },
+          s = { "Split Horizontal" },
           v = { "Split Vertical" },
         },
       }, { prefix = "<leader>" })
