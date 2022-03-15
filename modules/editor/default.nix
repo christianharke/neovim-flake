@@ -49,6 +49,13 @@ in
       "<silent> <C-Down>" = "<cmd>resize<bar>-3<cr>";
     };
 
+    vim.tnoremap = {
+      "<C-h>" = "<C-\\><C-n><C-w>h";
+      "<C-j>" = "<C-\\><C-n><C-w>j";
+      "<C-k>" = "<C-\\><C-n><C-w>k";
+      "<C-l>" = "<C-\\><C-n><C-w>l";
+    };
+
     vim.luaConfigRC = ''
       local wk = require("which-key")
 
