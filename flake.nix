@@ -39,6 +39,7 @@
     devicons = { url = "github:kyazdani42/nvim-web-devicons"; flake = false; };
     indent-blankline = { url = "github:lukas-reineke/indent-blankline.nvim"; flake = false; };
     indentline = { url = "github:Yggdroot/indentLine"; flake = false; };
+    statusline-lualine = { url = "github:nvim-lualine/lualine.nvim"; flake = false; };
     statusline-lightline = { url = "github:itchyny/lightline.vim"; flake = false; };
     statusline-lightline-onedark = { url = "github:NovaDev94/lightline-onedark"; flake = false; };
     theme-gruvbox = { url = "github:morhetz/gruvbox"; flake = false; };
@@ -105,6 +106,7 @@
           "startify"
           "statusline-lightline"
           "statusline-lightline-onedark"
+          "statusline-lualine"
           "telescope"
           "test"
           "theme-gruvbox"
@@ -154,8 +156,7 @@
             vim.lsp.vimscript = true;
             vim.lsp.yaml = true;
             vim.markdown.enable = true;
-            vim.statusline.lightline.enable = true;
-            vim.statusline.lightline.theme = "onedark";
+            vim.statusline.lualine.enable = true;
             vim.test.enable = true;
             vim.theme.onedark.enable = true;
             vim.wiki.enable = true;

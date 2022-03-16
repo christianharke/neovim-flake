@@ -475,6 +475,7 @@
         "startify": "startify",
         "statusline-lightline": "statusline-lightline",
         "statusline-lightline-onedark": "statusline-lightline-onedark",
+        "statusline-lualine": "statusline-lualine",
         "telescope": "telescope",
         "test": "test",
         "theme-gruvbox": "theme-gruvbox",
@@ -533,6 +534,22 @@
       "original": {
         "owner": "NovaDev94",
         "repo": "lightline-onedark",
+        "type": "github"
+      }
+    },
+    "statusline-lualine": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1646668162,
+        "narHash": "sha256-F7R5V70ta/9s9qn+QkZtk5AFb/PfKtuOqPHP/Y6/WHI=",
+        "owner": "nvim-lualine",
+        "repo": "lualine.nvim",
+        "rev": "88a44ade818f9ee7ba730aa4096250e22b243808",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-lualine",
+        "repo": "lualine.nvim",
         "type": "github"
       }
     },

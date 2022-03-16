@@ -2,5 +2,6 @@
 {
   imports = [
     ./lightline.nix
+    ./lualine.nix
   ];
 }
