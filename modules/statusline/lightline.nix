@@ -21,11 +21,27 @@ in
   };
 
   config = mkIf cfg.enable {
-    vim.startPlugins = with pkgs.neovimPlugins; [ statusline-lightline ];
+    vim.startPlugins = with pkgs.neovimPlugins; [
+      fugitive
+      statusline-lightline
+    ];
 
     vim.globals = {
-      "lightline" = {
-        "colorscheme" = cfg.theme;
+      lightline = {
+        colorscheme = cfg.theme;
+        active = {
+          left = [
+            [ "mode" "paste" ]
+            [ "gitbranch" "readonly" "filename" "modified" ]
+          ];
+        };
+        tab = {
+          active = [ "filename" "modified" ];
+          inactive = [ "filename" "modified" ];
+        };
+        component_function = {
+          gitbranch = "FugitiveHead";
+        };
       };
     };
   };
