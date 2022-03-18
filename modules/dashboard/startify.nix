@@ -176,7 +176,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    vim.startPlugins = with pkgs.neovimPlugins; [ startify ];
+    vim.startPlugins = with pkgs.neovimPlugins; [ dashboard-startify ];
 
     vim.globals = {
       "startify_custom_header" = if cfg.customHeader == [ ] then null else cfg.customHeader;

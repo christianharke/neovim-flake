@@ -61,7 +61,7 @@ in
       endfunction
       :autocmd FileType vimwiki map <leader>c :call ToggleCalendar()<CR>
 
-      au BufNewFile ~/Nextcloud/Notes/diary/*.txt
+      autocmd BufNewFile ~/Nextcloud/Notes/diary/*.md
         \ call append(0,[
         \ "# " . split(expand('%:r'),'/')[-1], "",
         \ "## Todo",  "",

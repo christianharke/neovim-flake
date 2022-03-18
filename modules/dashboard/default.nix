@@ -2,5 +2,6 @@
 {
   imports = [
     ./startify.nix
+    ./startup.nix
   ];
 }

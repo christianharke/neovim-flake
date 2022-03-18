@@ -68,7 +68,8 @@
     calendar = { url = "github:hoaxdream/calendar-vim"; flake = false; };
     completion = { url = "github:nvim-lua/completion-nvim"; flake = false; };
     popup = { url = "github:nvim-lua/popup.nvim"; flake = false; };
-    startify = { url = "github:mhinz/vim-startify"; flake = false; };
+    dashboard-startify = { url = "github:mhinz/vim-startify"; flake = false; };
+    dashboard-startup = { url = "github:startup-nvim/startup.nvim"; flake = false; };
     telescope = { url = "github:nvim-telescope/telescope.nvim"; flake = false; };
     vimwiki = { url = "github:vimwiki/vimwiki"; flake = false; };
     which-key = { url = "github:folke/which-key.nvim"; flake = false; };
@@ -93,6 +94,8 @@
           "dap"
           "dap-telescope"
           "dap-virtual-text"
+          "dashboard-startify"
+          "dashboard-startup"
           "devicons"
           "editorconfig"
           "fugitive"
@@ -103,7 +106,6 @@
           "lspconfig"
           "plenary"
           "popup"
-          "startify"
           "statusline-lightline"
           "statusline-lightline-onedark"
           "statusline-lualine"
@@ -127,7 +129,7 @@
             vim.vimAlias = true;
 
             # Modules
-            vim.dashboard.startify.enable = true;
+            vim.dashboard.startup.enable = true;
             vim.disableArrows = true;
             vim.editor.indentGuide = true;
             vim.editor.underlineCurrentWord = true;

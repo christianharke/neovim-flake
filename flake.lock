@@ -112,6 +112,38 @@
         "type": "github"
       }
     },
+    "dashboard-startify": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1620487920,
+        "narHash": "sha256-//3bzFTe1WKqvQ3uYrDbk5Zu5BKq2hXQGeBhmhKIHvk=",
+        "owner": "mhinz",
+        "repo": "vim-startify",
+        "rev": "81e36c352a8deea54df5ec1e2f4348685569bed2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mhinz",
+        "repo": "vim-startify",
+        "type": "github"
+      }
+    },
+    "dashboard-startup": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1644087093,
+        "narHash": "sha256-TBkTfIcBX8LdnX5Cww/y5i4VBYOwqdIipSWYWY0JLGo=",
+        "owner": "startup-nvim",
+        "repo": "startup.nvim",
+        "rev": "d64c0599aada57f2d992418709dc4490c17641c4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "startup-nvim",
+        "repo": "startup.nvim",
+        "type": "github"
+      }
+    },
     "devicons": {
       "flake": false,
       "locked": {
@@ -457,6 +489,8 @@
         "dap": "dap",
         "dap-telescope": "dap-telescope",
         "dap-virtual-text": "dap-virtual-text",
+        "dashboard-startify": "dashboard-startify",
+        "dashboard-startup": "dashboard-startup",
         "devicons": "devicons",
         "editorconfig": "editorconfig",
         "flake-utils": "flake-utils",
@@ -472,7 +506,6 @@
         "popup": "popup",
         "pre-commit-hooks": "pre-commit-hooks",
         "rnix-lsp": "rnix-lsp",
-        "startify": "startify",
         "statusline-lightline": "statusline-lightline",
         "statusline-lightline-onedark": "statusline-lightline-onedark",
         "statusline-lualine": "statusline-lualine",
@@ -487,22 +520,6 @@
         "vimagit": "vimagit",
         "vimwiki": "vimwiki",
         "which-key": "which-key"
-      }
-    },
-    "startify": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1620487920,
-        "narHash": "sha256-//3bzFTe1WKqvQ3uYrDbk5Zu5BKq2hXQGeBhmhKIHvk=",
-        "owner": "mhinz",
-        "repo": "vim-startify",
-        "rev": "81e36c352a8deea54df5ec1e2f4348685569bed2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mhinz",
-        "repo": "vim-startify",
-        "type": "github"
       }
     },
     "statusline-lightline": {
