@@ -76,6 +76,7 @@ in
 
     vim.configRC = optionalString cfg.indentGuide ''
       let g:indentLine_enabled = 1
+      let g:indentLine_fileTypeExclude = ['startup']
       set list lcs=tab:\|\
     '';
   };
