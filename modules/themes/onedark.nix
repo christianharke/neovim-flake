@@ -7,6 +7,7 @@ let
 
   cfg = config.vim.theme.onedark;
   lightlineCfg = config.vim.statusline.lightline;
+  lualineCfg = config.vim.statusline.lualine;
 
   mkStyleOption = default: mkOption {
     inherit default;
@@ -57,5 +58,6 @@ in
       ++ optional lightlineCfg.enable statusline-lightline-onedark;
 
     vim.statusline.lightline.theme = mkIf lightlineCfg.enable "onedark";
+    vim.statusline.lualine.theme = mkIf lualineCfg.enable "onedark";
   };
 }
