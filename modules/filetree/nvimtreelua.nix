@@ -134,13 +134,13 @@ in
 
 
         require'nvim-tree'.setup {
-          disable_netrw       = ${toString cfg.disableNetRW},
+          disable_netrw       = ${boolToString cfg.disableNetRW},
           hijack_netrw        = true,
           open_on_setup       = false,
           ignore_ft_on_setup  = {},
-          update_to_buf_dir   = {
+          hijack_directories   = {
             enable = true,
-            auto_open = ${toString cfg.openOnDirectoryStart},
+            auto_open = ${boolToString cfg.openOnDirectoryStart},
           },
           auto_close          = ${toString cfg.closeOnLastWindow},
           open_on_tab         = false,
@@ -166,7 +166,7 @@ in
           view = {
             width = ${toString cfg.treeWidth},
             side = '${cfg.treeSide}',
-            auto_resize = false,
+            adaptive_size = false,
             mappings = {
               custom_only = false,
               list = {}
