@@ -15,7 +15,7 @@ in
 
     theme = mkOption {
       default = "auto";
-      description = "Theme for light line. For possible values see: https://github.com/nvim-lualine/lualine.nvim/blob/master/THEMES.md";
+      description = "Theme for lualine. For possible values see: https://github.com/nvim-lualine/lualine.nvim/blob/master/THEMES.md";
       type = types.enum [
         "auto"
         "16color"
