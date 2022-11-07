@@ -178,14 +178,18 @@
       in
       rec {
 
-        apps.${name} = flake-utils.lib.mkApp {
-          drv = packages.${name};
-          exePath = "/bin/nvim";
+        apps = {
+          ${name} = flake-utils.lib.mkApp {
+            drv = packages.${name};
+            exePath = "/bin/nvim";
+          };
+          default = apps.${name};
         };
-        defaultApp = apps.${name};
 
-        packages.${name} = neovimPkg;
-        defaultPackage = packages.${name};
+        packages = {
+          ${name} = neovimPkg;
+          default = neovimPkg;
+        };
 
         checks = {
           build = pkgs.${name};
@@ -208,7 +212,7 @@
             nixpkgs-fmt
             statix
 
-            defaultPackage
+            packages.default
           ];
           shellHook = ''
             figlet ${name} | lolcat --freq 0.5
