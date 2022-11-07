@@ -66,7 +66,6 @@
 
     # Workflow
     calendar = { url = "github:hoaxdream/calendar-vim"; flake = false; };
-    completion = { url = "github:nvim-lua/completion-nvim"; flake = false; };
     popup = { url = "github:nvim-lua/popup.nvim"; flake = false; };
     dashboard-startify = { url = "github:mhinz/vim-startify"; flake = false; };
     dashboard-startup = { url = "github:startup-nvim/startup.nvim"; flake = false; };
@@ -89,7 +88,6 @@
         plugins = [
           "blame-line"
           "calendar"
-          "completion"
           "cursorword"
           "dap"
           "dap-telescope"
