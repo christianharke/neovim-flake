@@ -30,6 +30,10 @@ in
       " Set text width
       autocmd FileType markdown setlocal textwidth=100
 
+      " Set conceal options
+      autocmd FileType markdown setlocal concealcursor=""
+      autocmd FileType markdown setlocal conceallevel=1
+
       " Treat fenced languages as such
       let g:markdown_fenced_languages = ['bash=sh', 'sh', 'html', 'groovy', 'java', 'js=javascript', 'python', 'rust', 'vim']
     '';
