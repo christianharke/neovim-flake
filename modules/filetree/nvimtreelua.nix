@@ -49,12 +49,6 @@ in
       type = types.bool;
     };
 
-    closeOnLastWindow = mkOption {
-      default = true;
-      description = "Close when tree is last window open";
-      type = types.bool;
-    };
-
     ignoreFileTypes = mkOption {
       default = [ "startify" ];
       description = "Ignore file types";
@@ -142,7 +136,6 @@ in
             enable = true,
             auto_open = ${boolToString cfg.openOnDirectoryStart},
           },
-          auto_close          = ${toString cfg.closeOnLastWindow},
           open_on_tab         = false,
           hijack_cursor       = false,
           update_cwd          = false,
