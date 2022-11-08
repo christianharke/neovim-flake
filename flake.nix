@@ -70,6 +70,7 @@
     dashboard-startify = { url = "github:mhinz/vim-startify"; flake = false; };
     dashboard-startup = { url = "github:startup-nvim/startup.nvim"; flake = false; };
     telescope = { url = "github:nvim-telescope/telescope.nvim"; flake = false; };
+    telescope-file-browser = { url = "github:nvim-telescope/telescope-file-browser.nvim"; flake = false; };
     vimwiki = { url = "github:vimwiki/vimwiki"; flake = false; };
     which-key = { url = "github:folke/which-key.nvim"; flake = false; };
 
@@ -108,6 +109,7 @@
           "statusline-lightline-onedark"
           "statusline-lualine"
           "telescope"
+          "telescope-file-browser"
           "test"
           "theme-gruvbox"
           "theme-nord"

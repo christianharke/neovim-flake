@@ -493,6 +493,7 @@
         "statusline-lightline-onedark": "statusline-lightline-onedark",
         "statusline-lualine": "statusline-lualine",
         "telescope": "telescope",
+        "telescope-file-browser": "telescope-file-browser",
         "test": "test",
         "theme-gruvbox": "theme-gruvbox",
         "theme-nord": "theme-nord",
@@ -566,6 +567,22 @@
       "original": {
         "owner": "nvim-telescope",
         "repo": "telescope.nvim",
+        "type": "github"
+      }
+    },
+    "telescope-file-browser": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1665951842,
+        "narHash": "sha256-fIm2FWYJXNl0SlQgmRuULOTRc2VVv2p1jJ2slcP4veY=",
+        "owner": "nvim-telescope",
+        "repo": "telescope-file-browser.nvim",
+        "rev": "2429ecfd2d76e3eb6c9f8d8ba2c6ce328975a95a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-telescope",
+        "repo": "telescope-file-browser.nvim",
         "type": "github"
       }
     },

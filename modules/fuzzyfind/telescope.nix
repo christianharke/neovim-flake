@@ -18,9 +18,12 @@ in
       plenary
       popup
       telescope
+      telescope-file-browser
     ];
 
     vim.luaConfigRC = ''
+      require("telescope").load_extension "file_browser"
+
       local wk = require("which-key")
 
       wk.register({
