@@ -220,15 +220,15 @@ Browsing matches:
  - `c` - Copy file
  - `p` - Paste file from clipboard
  - `-` - Navigate to the parent directory of current file
- - `CTRL-]` - Cd into directory
+ - `CTRL-]` - Change into directory
  - `CTRL-v` - Open in vert split
  - `CTRL-x` - Open in horizontal split
  - `CTRL-t` - Open in new tab
  - `tab` - Open file but stay in tree (preview)
  - `s` - Open file or folder in system's default application
  - `R` - Refresh tree
- - `I` - Toggle hidden folders visability
- - `H` - Toggle dot files visability
+ - `I` - Toggle hidden folders visibility
+ - `H` - Toggle dot files visibility
  - `W` - Collapse whole tree
  - `S` - Prompt path to expand
  - `.` - Vim command mode
