@@ -27,24 +27,23 @@ in
       local wk = require("which-key")
 
       wk.register({
-        b = {
-          name = "Buffers",
-          l = { "List Buffers" },
-          c = { "Close buffer" },
-        },
-        p = {
-          name = "Project",
-          f = { "Find File"},
-          g = { "Grep "},
+        f = {
+          name = "Files",
+          b = { "List Buffers" },
+          f = { "Find Files" },
+          g = { "Live Grep" },
+          h = { "Help Tags" },
+          r = { "Recent Files" },
         },
       }, { prefix = "<leader>" })
     '';
 
     vim.nnoremap = {
-      "<leader>pf" = "<cmd>Telescope find_files<cr>";
-      "<leader>pg" = "<cmd>Telescope live_grep<cr>";
-      "<leader>bl" = "<cmd>Telescope buffers<cr>";
-      "<leader>bc" = "<cmd>bdelete<cr>";
+      "<leader>fb" = "<cmd>Telescope buffers<cr>";
+      "<leader>ff" = "<cmd>Telescope find_files<cr>";
+      "<leader>fg" = "<cmd>Telescope live_grep<cr>";
+      "<leader>fh" = "<cmd>Telescope help_tags<cr>";
+      "<leader>fr" = "<cmd>Telescope oldfiles<cr>";
     };
   };
 }

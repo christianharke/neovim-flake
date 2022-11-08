@@ -121,8 +121,8 @@ in
 
         wk.register({
           f = {
-            name = "File Management",
-            n = {"File Tree"},
+            name = "Files",
+            n = { "File Tree" },
           },
         }, { prefix = "<leader>" })
 

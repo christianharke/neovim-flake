@@ -235,10 +235,11 @@ Browsing matches:
  - `CTRL-k` - Show file infos
 
 ## Telescope
+ - `<Leader> fb` - List buffers
  - `<Leader> ff` - Find file
  - `<Leader> fg` - Live grep
- - `<Leader> fb` - Buffers
  - `<Leader> fh` - Help tags
+ - `<Leader> fr` - Recent files
 
 ## LSP
  - `<F2>` - Rename
