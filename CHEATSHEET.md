@@ -204,6 +204,9 @@ Browsing matches:
  - `CTRL-w j` - Move to below window
  - `CTRL-w k` - Move to above window
 
+## Dashboard
+ - `<Leader> ss` - Display dashboard
+
 ## File Explorer
  - `<Leader> fn` - Toggle file tree
  - `a` - Add new file (or folder if you leave a / at end)

@@ -17,6 +17,17 @@ in
 
     vim.luaConfigRC = ''
       require"startup".setup()
+
+      require("which-key").register({
+        s = {
+          name = "Start",
+          s = { "Display Dashboard" },
+        },
+      }, { prefix = "<leader>" })
     '';
+
+    vim.nnoremap = {
+      "<leader>ss" = "<cmd>Startup display<cr>";
+    };
   };
 }
