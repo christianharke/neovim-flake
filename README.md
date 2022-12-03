@@ -1,6 +1,8 @@
-# What is this?
+# Neovim Flake
 
+[![NixOS][nixos-badge]][nixos]
 [![Build and Test][ci-badge]][ci]
+[![Update][update-badge]][update]
 
 This is my personal neovim config. Feel free to take bits of it to build your own or run it yourself.
 
@@ -36,6 +38,10 @@ nix flake update
 |-README.md -- This file
 ```
 
+[nixos]: https://nixos.org/
+[nixos-badge]: https://img.shields.io/badge/NixOS-blue.svg?logo=NixOS&logoColor=white
 [ci]: https://github.com/christianharke/neovim-flake/actions/workflows/ci.yml
 [ci-badge]: https://github.com/christianharke/neovim-flake/actions/workflows/ci.yml/badge.svg
+[update]: https://github.com/christianharke/neovim-flake/actions/workflows/update.yml
+[update-badge]: https://github.com/christianharke/neovim-flake/actions/workflows/update.yml/badge.svg
 
