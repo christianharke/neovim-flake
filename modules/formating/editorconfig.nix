@@ -11,7 +11,7 @@ in
 
 {
   options.vim.formatting.editorConfig = {
-    enable = mkEnableOption "Enable barbar";
+    enable = mkEnableOption "Enable editorconfig";
   };
 
   config = mkIf cfg.enable {
