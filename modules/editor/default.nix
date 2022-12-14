@@ -23,7 +23,7 @@ in
   };
 
   config = {
-    vim.startPlugins = with pkgs.neovimPlugins; [ which-key ]
+    vim.startPlugins = with pkgs.neovimPlugins; [ surround which-key ]
       ++ optionals cfg.indentGuide [ indent-blankline indentline ]
       ++ optional cfg.underlineCurrentWord cursorword;
 

@@ -548,6 +548,7 @@
         "statusline-lightline": "statusline-lightline",
         "statusline-lightline-onedark": "statusline-lightline-onedark",
         "statusline-lualine": "statusline-lualine",
+        "surround": "surround",
         "telescope": "telescope",
         "telescope-file-browser": "telescope-file-browser",
         "test": "test",
@@ -607,6 +608,22 @@
       "original": {
         "owner": "nvim-lualine",
         "repo": "lualine.nvim",
+        "type": "github"
+      }
+    },
+    "surround": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1666730476,
+        "narHash": "sha256-DZE5tkmnT+lAvx/RQHaDEgEJXRKsy56KJY919xiH1lE=",
+        "owner": "tpope",
+        "repo": "vim-surround",
+        "rev": "3d188ed2113431cf8dac77be61b842acb64433d9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tpope",
+        "repo": "vim-surround",
         "type": "github"
       }
     },

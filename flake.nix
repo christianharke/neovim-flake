@@ -59,6 +59,7 @@
     lang-nix = { url = "github:LnL7/vim-nix"; flake = false; };
     lightbulb = { url = "github:kosayoda/nvim-lightbulb"; flake = false; };
     lspconfig = { url = "github:neovim/nvim-lspconfig"; flake = false; };
+    surround = { url = "github:tpope/vim-surround"; flake = false; };
     test = { url = "github:vim-test/vim-test"; flake = false; };
     treesitter = { url = "github:nvim-treesitter/nvim-treesitter"; flake = false; };
     treesitter-context = { url = "github:romgrk/nvim-treesitter-context"; flake = false; };
@@ -107,6 +108,7 @@
           "statusline-lightline"
           "statusline-lightline-onedark"
           "statusline-lualine"
+          "surround"
           "telescope"
           "telescope-file-browser"
           "test"
